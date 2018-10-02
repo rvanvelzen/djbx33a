@@ -1,7 +1,5 @@
 ARG_ENABLE('djbx33a', 'djbx33a support', 'no');
 
 if (PHP_DJBX33A != 'no') {
-	AC_DEFINE('HAVE_DJBX33A', 1, 'djbx33a support enabled');
-
-	EXTENSION('djbx33a', 'djbx33a.c', null, '/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1');
+	EXTENSION('djbx33a', 'djbx33a.c');
 }
