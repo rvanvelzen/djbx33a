@@ -1,7 +1,7 @@
 /* djbx33a extension for PHP */
 
 #ifdef HAVE_CONFIG_H
-# include "config.h"
+#include "config.h"
 #endif
 
 #include "php.h"
@@ -14,7 +14,7 @@ PHP_FUNCTION(djbx33a)
 {
 	zend_string *input;
 
-	ZEND_PARSE_PARAMETERS_START(0, 1)
+	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(input)
 	ZEND_PARSE_PARAMETERS_END();
 
@@ -26,10 +26,6 @@ PHP_FUNCTION(djbx33a)
  */
 PHP_RINIT_FUNCTION(djbx33a)
 {
-#if defined(ZTS) && defined(COMPILE_DL_DJBX33A)
-	ZEND_TSRMLS_CACHE_UPDATE();
-#endif
-
 	return SUCCESS;
 }
 /* }}} */
@@ -47,14 +43,14 @@ PHP_MINFO_FUNCTION(djbx33a)
 /* {{{ arginfo
  */
 ZEND_BEGIN_ARG_INFO(arginfo_djbx33a, 0)
-	ZEND_ARG_INFO(0, str)
+	ZEND_ARG_INFO(0, input)
 ZEND_END_ARG_INFO()
 /* }}} */
 
 /* {{{ djbx33a_functions[]
  */
 static const zend_function_entry djbx33a_functions[] = {
-	PHP_FE(djbx33a,		arginfo_djbx33a)
+	PHP_FE(djbx33a, arginfo_djbx33a)
 	PHP_FE_END
 };
 /* }}} */
@@ -76,8 +72,5 @@ zend_module_entry djbx33a_module_entry = {
 /* }}} */
 
 #ifdef COMPILE_DL_DJBX33A
-# ifdef ZTS
-ZEND_TSRMLS_CACHE_DEFINE()
-# endif
 ZEND_GET_MODULE(djbx33a)
 #endif
